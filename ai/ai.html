@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Smart Savdo — AI Hub Expert</title>
+    <link rel="icon" type="image/png" href="../icon.png">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="ai.css">
+</head>
+
+<body class="ai-hub-body">
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <img src="../icon.png" alt="Logo" style="height: 40px; margin-right: 10px; vertical-align: middle;">
+                <h1 style="display: inline-block; vertical-align: middle;">AI Expert</h1>
+            </div>
+            <div class="navbar-menu">
+                <a href="../index.html" class="nav-link">Bosh sahifa</a>
+                <a href="../afford/afford.html" class="nav-link">Afford</a>
+                <a href="../olx/olx.html" class="nav-link">OLX</a>
+            </div>
+            <div class="navbar-right">
+                <button id="show-payment-sim" class="profile-button"
+                    style="background: linear-gradient(90deg, #FF6EC7, #845EC2); border: none; padding: 8px 15px; border-radius: 8px; color: white; cursor: pointer;">Payment
+                    Inspector</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="ai-main-chat">
+        <div id="ai-chat-container" class="ai-chat-container">
+            <div class="chat-header">
+                <img src="../icon.png" alt="AI"
+                    style="width: 30px; height: 30px; border-radius: 50%; border: 1px solid #00FFE0;">
+                <h3 style="margin-left: 10px;">Smart Savdo AI Expert</h3>
+                <span class="status-indicator" style="margin-left: auto;"></span> Online
+            </div>
+            <div id="ai-messages" class="ai-messages">
+                <div class="message bot">
+                    Assalomu alaykum! Men Smart Savdo tizimi bo'yicha ekspertman.
+                    Sizga kod yozishda, vazifalarni boshqarishda yoki to'lov tizimlarini (Click/Payme) tekshirishda
+                    yordam bera olaman.
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <textarea id="ai-chat-input" placeholder="Savol bering yoki buyruq kiriting..." rows="1"></textarea>
+                <button id="ai-chat-send" class="btn-send">📤 Send</button>
+            </div>
+        </div>
+
+        <!-- Payment Simulator (Hidden by default) -->
+        <div id="payment-inspector" class="payment-inspector hidden">
+            <div class="inspector-header">
+                <h3>To'lov Tizimi Simulyatori (Click & Payme)</h3>
+                <button onclick="toggleInspector()" class="close-btn"
+                    style="background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">✕</button>
+            </div>
+            <div class="inspector-body">
+                <div class="simulator-controls">
+                    <label>Protokol Tanlang</label>
+                    <select id="protocol-select">
+                        <option value="click_prepare">Click: Prepare Request</option>
+                        <option value="click_complete">Click: Complete Request</option>
+                        <option value="payme_jsonrpc">Payme: JSON-RPC 2.0</option>
+                    </select>
+
+                    <div id="request-payload-area">
+                        <label>Request JSON (Protocol Mock)</label>
+                        <textarea id="request-payload" rows="8"
+                            style="width:100%; background:#111; color:#00FFE0; border:1px solid #333; padding:10px; font-family:monospace;"></textarea>
+                    </div>
+
+                    <button id="run-simulation" class="btn-copy">Process Request</button>
+                </div>
+
+                <div class="simulator-output">
+                    <label>Response / Log View</label>
+                    <pre id="simulator-log">// Protocol output will appear here...</pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../chatbot.js"></script>
+    <script src="ai.js"></script>
+</body>
+
+</html>
