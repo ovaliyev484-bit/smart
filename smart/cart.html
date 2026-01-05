@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Savat</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            background: linear-gradient(135deg, #c3ecff, #f0f2f5);
+            position: relative; 
+            min-height: 100vh;
+        }
+
+        .exit-btn {
+            display: inline-block;
+            padding: 6px 12px;       
+            background-color: #0d6efd;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 14px;
+        }
+
+        .exit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .title {
+            text-align: center;
+            color: #0d6efd;
+            margin-top: 60px;
+            font-size: 28px;
+        }
+
+        .cart-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-name {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .cart-item-price {
+            font-size: 16px;
+            color: #0d6efd;
+            font-weight: bold;
+        }
+
+        .cart-total {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<a href="index.html" class="exit-btn">Orqaga</a>
+
+<h1 class="title">Sizning savatingiz</h1>
+
+<div class="cart-container" id="cart-container">
+    <!-- Mahsulotlar JS orqali qo‘shiladi -->
+</div>
+
+<script>
+    let cartContainer = document.getElementById('cart-container');
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function renderCart(){
+        cartContainer.innerHTML = '';
+        let total = 0;
+        cart.forEach(item => {
+            total += item.price;
+            let div = document.createElement('div');
+            div.className = 'cart-item';
+            div.innerHTML = `<span class="cart-item-name">${item.name}</span>
+                             <span class="cart-item-price">${item.price.toLocaleString()} so'm</span>`;
+            cartContainer.appendChild(div);
+        });
+        let totalDiv = document.createElement('div');
+        totalDiv.className = 'cart-total';
+        totalDiv.textContent = `Jami: ${total.toLocaleString()} so'm`;
+        cartContainer.appendChild(totalDiv);
+    }
+
+    renderCart();
+</script>
+
+</body>
+</html>

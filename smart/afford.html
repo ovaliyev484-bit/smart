@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afford Worker Portal</title>
+    <link rel="stylesheet" href="afford.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Container -->
+    <div id="main-container" class="glass-panel text-center fade-in">
+
+        <!-- Login View -->
+        <div id="login-view">
+            <div class="login-header">
+                <h1>Xush kelibsiz 👋</h1>
+                <p>Ishchi profilingizga kiring</p>
+            </div>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label class="form-label" for="worker-id">Ishchi ID</label>
+                    <input type="text" id="worker-id" class="form-input" placeholder="W-12345" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Parol</label>
+                    <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="btn-primary">Kirish</button>
+            </form>
+        </div>
+
+        <!-- Dashboard View (Hidden by default) -->
+        <div id="dashboard-view" class="hidden">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="brand">
+                    <h2>Afford Worker</h2>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">A</div>
+                    <div class="user-info">
+                        <div style="font-weight: 600;">Azizbek</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">Sotuvchi</div>
+                    </div>
+                    <button id="logout-btn" class="logout-btn">Chiqish</button>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <main class="dashboard-content">
+
+                <!-- Stats Cards -->
+                <div class="stat-card">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Bajarilgan vazifalar</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">85%</div>
+                    <div class="stat-label">Samaradorlik</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">6.5s</div>
+                    <div class="stat-label">Ish soati</div>
+                </div>
+
+                <!-- Recent Tasks -->
+                <section class="task-section">
+                    <h3>Mening Vazifalarim</h3>
+                    <div class="task-list">
+                        <!-- Dynamic Tasks will be inserted here -->
+                        <div class="task-item">
+                            <div>
+                                <div style="font-weight: 600;">Yangi tovarlarni qabul qilish</div>
+                                <div style="font-size: 0.85rem; color: var(--text-muted);">Omborxona</div>
+                            </div>
+                            <span class="task-status status-pending">Jarayonda</span>
+                        </div>
+
+                        <div class="task-item">
+                            <div>
+                                <div style="font-weight: 600;">Mijozlar hisoboti</div>
+                                <div style="font-size: 0.85rem; color: var(--text-muted);">Kassa</div>
+                            </div>
+                            <span class="task-status status-done">Bajarildi</span>
+                        </div>
+
+                        <div class="task-item">
+                            <div>
+                                <div style="font-weight: 600;">Vitrinani tozalash</div>
+                                <div style="font-size: 0.85rem; color: var(--text-muted);">Zal</div>
+                            </div>
+                            <span class="task-status status-done">Bajarildi</span>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="afford.js"></script>
+</body>
+
+</html>
