@@ -1,0 +1,303 @@
+/* ai/ai.css - AI Hub Expert (Unified Neon Theme) */
+.ai-hub-body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #0F0F1A;
+    /* Matching landing page */
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    background: linear-gradient(135deg, #0F0F1A 0%, #17172E 100%);
+}
+
+.ai-hub-body::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(139, 61, 255, 0.1) 0%, transparent 60%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.navbar {
+    background: rgba(15, 15, 26, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 255, 224, 0.2);
+    padding: 10px 0;
+    z-index: 20;
+}
+
+.navbar-brand h1 {
+    background: linear-gradient(90deg, #FF6EC7, #845EC2, #00CFFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.ai-main-chat {
+    flex: 1;
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Chat Container */
+.ai-chat-container {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 255, 224, 0.2);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.chat-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid rgba(0, 255, 224, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #FF6EC7;
+    text-shadow: 0 0 10px rgba(255, 110, 199, 0.3);
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    background: #00FFE0;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00FFE0;
+    animation: pulse 2s infinite;
+}
+
+.ai-messages {
+    flex: 1;
+    padding: 25px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 12px 18px;
+    border-radius: 15px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    position: relative;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.message.bot {
+    align-self: flex-start;
+    background: rgba(0, 255, 224, 0.05);
+    border: 1px solid rgba(0, 255, 224, 0.15);
+    color: #E0E0E0;
+    border-bottom-left-radius: 2px;
+}
+
+.message.user {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #FF6EC7 0%, #845EC2 100%);
+    color: white;
+    border-bottom-right-radius: 2px;
+    box-shadow: 0 4px 15px rgba(255, 110, 199, 0.2);
+}
+
+.chat-input-area {
+    padding: 20px;
+    border-top: 1px solid rgba(0, 255, 224, 0.2);
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#ai-chat-input {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 224, 0.3);
+    border-radius: 12px;
+    padding: 12px 15px;
+    color: white;
+    resize: none;
+    font-size: 0.95rem;
+    max-height: 150px;
+    transition: all 0.3s;
+}
+
+#ai-chat-input:focus {
+    outline: none;
+    border-color: #FF6EC7;
+    box-shadow: 0 0 15px rgba(255, 110, 199, 0.2);
+}
+
+.btn-send {
+    background: linear-gradient(90deg, #FF6EC7, #845EC2);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+    box-shadow: 0 0 10px rgba(255, 110, 199, 0.3);
+}
+
+.btn-send:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #FF6EC7;
+}
+
+/* Payment Inspector */
+.payment-inspector {
+    width: 450px;
+    background: rgba(15, 15, 26, 0.95);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 110, 199, 0.2);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+}
+
+.payment-inspector.hidden {
+    transform: translateX(120%);
+    display: none;
+}
+
+.inspector-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 110, 199, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inspector-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #00FFE0;
+}
+
+.inspector-body {
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.simulator-controls label,
+.simulator-output label {
+    display: block;
+    font-size: 0.85rem;
+    color: #A0A0A0;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+#protocol-select {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 224, 0.3);
+    border-radius: 8px;
+    padding: 10px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.btn-copy {
+    background: linear-gradient(90deg, #00FFE0, #0081CF);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 255, 224, 0.3);
+}
+
+.btn-copy:hover {
+    box-shadow: 0 0 20px #00FFE0;
+    transform: scale(1.02);
+}
+
+#simulator-log {
+    background: #050510;
+    color: #00FFE0;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    max-height: 250px;
+    overflow: auto;
+    border: 1px solid rgba(0, 255, 224, 0.1);
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-family: 'Consolas', monospace;
+}
+
+@media (max-width: 1100px) {
+    .payment-inspector {
+        position: fixed;
+        right: 20px;
+        top: 80px;
+        bottom: 20px;
+        width: calc(100% - 40px);
+        max-width: 450px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 8px #00FFE0;
+    }
+
+    50% {
+        transform: scale(1.2);
+        box-shadow: 0 0 15px #00FFE0;
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 8px #00FFE0;
+    }
+}

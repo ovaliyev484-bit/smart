@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uzum Market - Online Do'kon</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <h1>🛍️ Uzum Market</h1>
+            </div>
+            <div class="navbar-menu">
+                <a href="#" class="nav-link">Bosh sahifa</a>
+                <a href="#" class="nav-link">Toifalar</a>
+                <a href="#" class="nav-link">Haqida</a>
+                <div class="search-box">
+                    <input type="text" id="search-input" class="search-input" placeholder="Mahsulot qidiring...">
+                    <button class="search-btn">🔍</button>
+                </div>
+            </div>
+            <div class="navbar-right">
+                <button id="cart-btn" class="cart-button">
+                    🛒 Savat (<span id="cart-count">0</span>)
+                </button>
+                <button id="profile-btn" class="profile-button">👤 Profil</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <div class="banner">
+        <div class="banner-content">
+            <h2>Eng Yaxshi Narxlarda Sotib Oling!</h2>
+            <p>Millionlab mahsulotdan tanlang va tezda etkazib berish</p>
+            <button class="banner-btn">Taklif qilingan mahsulotlarni ko'rish</button>
+        </div>
+    </div>
+
+    <!-- Container -->
+    <div class="container main-content">
+
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <button class="category-btn active" data-category="all">Barchasi</button>
+            <button class="category-btn" data-category="electronics">📱 Elektronika</button>
+            <button class="category-btn" data-category="clothing">👕 Kiyimlar</button>
+            <button class="category-btn" data-category="home">🏠 Uy va Bog'</button>
+            <button class="category-btn" data-category="books">📚 Kitoblar</button>
+            <button class="category-btn" data-category="sports">⚽ Sport</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-grid" id="products-grid">
+            <!-- Mahsulotlar shu yerga o'tadi -->
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Savat</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Savat mahsulotlari -->
+            </div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Jami:</span>
+                    <span id="total-price">0 so'm</span>
+                </div>
+                <button class="btn-primary" id="checkout-btn">Buyurtma berish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content-product">
+            <button class="close-btn">&times;</button>
+            <div class="product-detail">
+                <div class="product-image-large">
+                    <img id="modal-product-img" src="" alt="Mahsulot">
+                </div>
+                <div class="product-info-detail">
+                    <h2 id="modal-product-name"></h2>
+                    <p id="modal-product-desc"></p>
+                    <div class="price-section">
+                        <span class="product-price" id="modal-product-price"></span>
+                        <span class="rating">⭐ 4.5 (120 fikr)</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Miqdor:</label>
+                        <input type="number" id="product-quantity" min="1" max="10" value="1">
+                    </div>
+                    <button class="btn-primary" id="add-to-cart-modal">Savatga qo'shish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Buyurtmani Tasdiqlash</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <form id="checkout-form" class="checkout-form">
+                <div class="form-group">
+                    <label>To'liq Ismi</label>
+                    <input type="text" id="customer-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefon Raqami</label>
+                    <input type="tel" id="customer-phone" placeholder="+998 90 123 45 67" required>
+                </div>
+                <div class="form-group">
+                    <label>Manzil</label>
+                    <input type="text" id="customer-address" required>
+                </div>
+                <div class="form-group">
+                    <label>Shaxar</label>
+                    <select id="customer-city" required>
+                        <option value="">Shaxarni tanlang</option>
+                        <option value="Tashkent">Toshkent</option>
+                        <option value="Samarkand">Samarqand</option>
+                        <option value="Bukhara">Buxoro</option>
+                        <option value="Fergana">Farg'ona</option>
+                        <option value="Andijan">Andijon</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>To'lash Usuli</label>
+                    <div class="payment-options">
+                        <label><input type="radio" name="payment" value="cash"> Naqd pul (D.d.t.)</label>
+                        <label><input type="radio" name="payment" value="card"> Plastik Karta</label>
+                        <label><input type="radio" name="payment" value="transfer"> Pul O'tkazish</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Buyurtmani Tasdiqla</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Uzum Haqida</h4>
+                    <ul>
+                        <li><a href="#">Biz haqida</a></li>
+                        <li><a href="#">Ishlar</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Foydalanuvchilar Uchun</h4>
+                    <ul>
+                        <li><a href="#">Yordamga murojaat</a></li>
+                        <li><a href="#">Qaytarish siyosati</a></li>
+                        <li><a href="#">Maxfiylik siyosati</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Bog'lanish</h4>
+                    <p>📞 +998 78 140 1400</p>
+                    <p>📧 support@uzum.uz</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Uzum Market. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="uzum.js"></script>
+</body>
+
+</html>

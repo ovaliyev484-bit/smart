@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Savdo - OLX Platform</title>
+    <link rel="icon" type="image/png" href="../icon.png">
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <img src="../icon.png" alt="Logo" style="height: 35px; margin-right: 10px; vertical-align: middle;">
+                <h1 style="display: inline-block; vertical-align: middle;">Smart Savdo OLX</h1>
+            </div>
+            <div class="navbar-menu">
+                <a href="../index.html" class="nav-link">Bosh sahifa</a>
+                <a href="#" class="nav-link" onclick="filterCategory('all')">Barcha xizmatlar</a>
+                <a href="#" class="nav-link" onclick="filterCategory('repair')">Onarish</a>
+                <a href="#" class="nav-link" onclick="filterCategory('construction')">Qurilish</a>
+                <div class="search-box">
+                    <input type="text" id="search-input" class="search-input" placeholder="Xizmat qidiring...">
+                    <button class="search-btn" onclick="searchServices()">🔍</button>
+                </div>
+            </div>
+            <div class="navbar-right">
+                <button id="cart-btn" class="cart-button" onclick="viewOrders()">
+                    📋 Buyurtmalar (<span id="order-count">0</span>)
+                </button>
+                <button id="profile-btn" class="profile-button" onclick="viewProfile()">
+                    👤 Profil
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <div class="banner">
+        <div class="banner-content">
+            <h2>🛠️ Xizmatlar Bozori</h2>
+            <p>Kerak bo'lgan xizmatni toping yoki o'zingizni xizmatlarini sotuvga qo'ying</p>
+            <button class="banner-btn" onclick="showAddServiceModal()">+ Xizmat Qo'shish</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <button class="category-btn active" onclick="filterCategory('all')">Hammasi</button>
+            <button class="category-btn" onclick="filterCategory('repair')">⚙️ Onarish</button>
+            <button class="category-btn" onclick="filterCategory('construction')">🏗️ Qurilish</button>
+            <button class="category-btn" onclick="filterCategory('cleaning')">🧹 Tozalash</button>
+            <button class="category-btn" onclick="filterCategory('moving')">📦 Ko'chish</button>
+            <button class="category-btn" onclick="filterCategory('teaching')">📚 O'qitish</button>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="products-grid" id="services-grid">
+            <!-- Services will be loaded here -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <h3>🔧 Smart Savdo OLX</h3>
+        <p class="footer-tech">
+            Xizmatlar bozori • Ishchilar portal • Xavfsiz to'lovlar • Reyting tizimi
+        </p>
+        <div class="footer-links">
+            <a href="../index.html">Bosh sahifa</a>
+            <a href="../uzum/uzum.html">Smart Savdo Shop</a>
+            <a href="../afford/afford.html">Afford Worker</a>
+        </div>
+        <p class="footer-credits">
+            © 2026 Smart Savdo • Barcha huquqlar himoyalangan
+        </p>
+    </footer>
+
+    <!-- Add Service Modal -->
+    <div id="add-service-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Xizmat Qo'shish</h2>
+                <button class="close-btn" onclick="closeModal('add-service-modal')">✕</button>
+            </div>
+            <form id="add-service-form" class="checkout-form">
+                <div class="form-group">
+                    <label>Xizmat nomi</label>
+                    <input type="text" id="service-name" placeholder="Masalan: Plomba o'rnatish" required>
+                </div>
+                <div class="form-group">
+                    <label>Toifa</label>
+                    <select id="service-category" required>
+                        <option>⚙️ Onarish</option>
+                        <option>🏗️ Qurilish</option>
+                        <option>🧹 Tozalash</option>
+                        <option>📦 Ko'chish</option>
+                        <option>📚 O'qitish</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tavsifi</label>
+                    <input type="text" id="service-description" placeholder="Xizmat haqida batafsil" required>
+                </div>
+                <div class="form-group">
+                    <label>Narxi (USD)</label>
+                    <input type="number" id="service-price" placeholder="100" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label>Rasm URL-i</label>
+                    <input type="text" id="service-image" placeholder="https://example.com/image.jpg">
+                </div>
+                <button type="submit" class="btn-primary" onclick="addService(event)">Qo'shish</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Service Detail Modal -->
+    <div id="service-detail-modal" class="modal">
+        <div class="modal-content-product">
+            <div class="modal-header">
+                <h2 id="detail-title">Xizmat Tafsilotlari</h2>
+                <button class="close-btn" onclick="closeModal('service-detail-modal')">✕</button>
+            </div>
+            <div class="product-detail">
+                <div class="product-image-large" id="detail-image">
+                    🛠️
+                </div>
+                <div class="product-info-detail">
+                    <h2 id="detail-name">Xizmat</h2>
+                    <p id="detail-description">Tavsif</p>
+                    <div class="price-section">
+                        <span class="product-price" id="detail-price">$100</span>
+                        <span class="rating" id="detail-rating">⭐⭐⭐⭐⭐ (0 reyting)</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Soni</label>
+                        <input type="number" id="detail-quantity" value="1" min="1">
+                    </div>
+                    <button class="btn-primary" onclick="orderService()">Buyurtma Berish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Orders Modal -->
+    <div id="orders-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Mening Buyurtmalarim</h2>
+                <button class="close-btn" onclick="closeModal('orders-modal')">✕</button>
+            </div>
+            <div id="orders-list" class="cart-items">
+                <!-- Orders will be displayed here -->
+            </div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    Jami: <span id="total-price">$0</span>
+                </div>
+                <button class="btn-primary" onclick="checkout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>To'lov Usuli Tanlang</h2>
+                <button class="close-btn" onclick="closeModal('payment-modal')">✕</button>
+            </div>
+            <form id="payment-form" class="checkout-form">
+                <div class="form-group">
+                    <label>To'lov usuli:</label>
+                </div>
+                <div class="payment-options">
+                    <label>
+                        <input type="radio" name="payment_method" value="usd" checked> 💵 USD
+                    </label>
+                    <label>
+                        <input type="radio" name="payment_method" value="sberbank"> 🏦 SberBank (O'zbekiston)
+                    </label>
+                    <label>
+                        <input type="radio" name="payment_method" value="click"> 📱 Click
+                    </label>
+                    <label>
+                        <input type="radio" name="payment_method" value="payme"> 💳 Payme
+                    </label>
+                </div>
+
+                <!-- USD Payment -->
+                <div id="usd-payment" class="form-group payment-details">
+                    <label>Wallet Address</label>
+                    <input type="text" placeholder="0x..." required>
+                </div>
+
+                <!-- SberBank Payment -->
+                <div id="sberbank-payment" class="form-group payment-details hidden">
+                    <label>Karta raqami</label>
+                    <input type="text" placeholder="1234 5678 9012 3456" required>
+                </div>
+
+                <!-- Click Payment -->
+                <div id="click-payment" class="form-group payment-details hidden">
+                    <label>Telefon raqami</label>
+                    <input type="tel" placeholder="+998 XX XXX XX XX" required>
+                </div>
+
+                <!-- Payme Payment -->
+                <div id="payme-payment" class="form-group payment-details hidden">
+                    <label>Telefon raqami</label>
+                    <input type="tel" placeholder="+998 XX XXX XX XX" required>
+                </div>
+
+                <button type="submit" class="btn-primary" onclick="processPayment(event)">To'lovni Tasdiqlash</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="olx.js"></script>
+    <script src="../chatbot.js"></script>
+</body>
+
+</html>
